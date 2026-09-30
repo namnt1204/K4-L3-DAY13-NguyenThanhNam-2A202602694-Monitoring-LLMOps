@@ -4,10 +4,13 @@ import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from structlog.contextvars import bind_contextvars
 
+from dashboard.app import HTML_TEMPLATE, compute_dashboard_metrics
+
 from .agent import LabAgent
+from .audit import record_audit_event
 from .incidents import disable, enable, status
 from .logging_config import configure_logging, get_logger
 from .metrics import record_error, snapshot
@@ -46,10 +49,25 @@ async def metrics() -> dict:
     return snapshot()
 
 
+@app.get("/dashboard", response_class=HTMLResponse)
+async def dashboard_page() -> str:
+    return HTML_TEMPLATE
+
+
+@app.get("/api/dashboard/metrics")
+async def dashboard_metrics() -> dict:
+    return compute_dashboard_metrics()
+
+
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: Request, body: ChatRequest) -> ChatResponse:
-    # TODO: Enrich logs with request context (user_id_hash, session_id, feature, model, env)
-    # bind_contextvars(...)
+    bind_contextvars(
+        user_id_hash=hash_user_id(body.user_id),
+        session_id=body.session_id,
+        feature=body.feature,
+        model=agent.model,
+        env=os.getenv("APP_ENV", "dev"),
+    )
     
     log.info(
         "request_received",
@@ -106,6 +124,7 @@ async def enable_incident(name: str) -> JSONResponse:
     try:
         enable(name)
         log.warning("incident_enabled", service="control", payload={"name": name})
+        record_audit_event("incident_enabled", actor="admin", details={"incident": name}, level="warning")
         return JSONResponse({"ok": True, "incidents": status()})
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
@@ -116,6 +135,7 @@ async def disable_incident(name: str) -> JSONResponse:
     try:
         disable(name)
         log.warning("incident_disabled", service="control", payload={"name": name})
+        record_audit_event("incident_disabled", actor="admin", details={"incident": name}, level="warning")
         return JSONResponse({"ok": True, "incidents": status()})
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc

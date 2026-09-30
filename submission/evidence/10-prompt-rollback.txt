@@ -1,0 +1,24 @@
+=== Evidence 10: Prompt Promotion and Rollback Verification ===
+Project: day13-k4-l3b-2A202602694
+Prompt Name: day13-chat
+
+Phase 1: Promote candidate v2 to production
+- Action:
+  client.update_prompt(name="day13-chat", version=2, new_labels=["candidate", "production"])
+  client.update_prompt(name="day13-chat", version=1, new_labels=["baseline"])
+- Result Verification:
+  client.get_prompt("day13-chat", label="production") -> Resolved Version: 2, Labels: ["candidate", "production", "latest"]
+- Generated Trace with Candidate Prompt v2:
+  Trace ID: e1e0b41cbc96732223b84fde3a5a0bf2 (Session: sess-candidate-v2, Version: 2)
+
+Phase 2: Rollback production to baseline v1
+- Action:
+  client.update_prompt(name="day13-chat", version=1, new_labels=["baseline", "production"])
+  client.update_prompt(name="day13-chat", version=2, new_labels=["candidate"])
+- Result Verification:
+  client.get_prompt("day13-chat", label="production") -> Resolved Version: 1, Labels: ["baseline", "production"]
+- Generated Trace with Baseline Prompt v1:
+  Trace ID: 213d56bd3e9233cbd0d9e588f45e87cc (Session: sess-001, Version: 1)
+
+Conclusion:
+Prompt promotion and rollback operate completely via Langfuse prompt management labels without requiring code changes or application redeployment.

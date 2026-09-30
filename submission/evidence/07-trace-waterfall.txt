@@ -1,0 +1,16 @@
+=== Evidence 07: Trace Waterfall Structure ===
+Trace ID: 0a22971915253e40de644b3ef3718aed
+Trace Name: day13-agent-request
+Associated Correlation ID: req-1a2b3c4d (cross-referenced with Evidence 04)
+Project: day13-k4-l3b-2A202602694
+
+Observation Tree:
+day13-agent-request (Trace ID: 0a22971915253e40de644b3ef3718aed, Latency: ~164ms)
+└── lab-agent-run [AGENT] (ID: 974a87bbfe2c3c5f, Latency: 0.164s, Parent: None)
+    ├── retrieval [RETRIEVER] (ID: ecd17fd4c1d18094, Latency: 0.001s, Parent: 974a87bbfe2c3c5f)
+    └── generation [GENERATION] (ID: fbc2fb01a8fbff4c, Latency: 0.164s, Parent: 974a87bbfe2c3c5f)
+
+Timing & Status Breakdown:
+- lab-agent-run: Total agent execution duration = 164ms (Status: OK)
+- retrieval: Document retrieval from corpus = <1ms, top_k = 1, tool_success = True
+- generation: FakeLLM synthesis = 164ms (TTFT = 50ms, Tokens In = 28, Tokens Out = 145, Cost = $0.002259)

@@ -1,0 +1,51 @@
+=== Evidence 05: PII Redaction Verification ===
+
+Command:
+python -c "import httpx; r = httpx.post('http://127.0.0.1:8000/chat', json={'user_id':'demo2','session_id':'demo-02','feature':'qa','message':'My info is a@b.vn 0901234567 001099012345 4111 1111 1111 1111'}); print(r.status_code, r.headers.get('x-request-id'))"
+
+Response:
+200 req-1471e349
+
+Structured Log Output in data/logs.jsonl:
+{
+  "service": "api",
+  "payload": {
+    "message_preview": "My info is [REDACTED_EMAIL] [REDACTED_PHONE_VN] [REDACTED_CCCD] [REDACTED_CREDIT..."
+  },
+  "event": "request_received",
+  "env": "dev",
+  "feature": "qa",
+  "session_id": "demo-02",
+  "correlation_id": "req-1471e349",
+  "user_id_hash": "d2bfc8025ea4",
+  "model": "claude-sonnet-4-5",
+  "level": "info",
+  "ts": "2026-09-30T03:01:31.247870Z"
+}
+{
+  "service": "api",
+  "latency_ms": 1096,
+  "ttft_ms": 50,
+  "tokens_in": 35,
+  "tokens_out": 162,
+  "cost_usd": 0.002535,
+  "quality_score": 0.9,
+  "tool_name": "retrieval",
+  "tool_success": true,
+  "payload": {
+    "answer_preview": "Starter answer. You should improve this output logic and add better quality chec..."
+  },
+  "event": "response_sent",
+  "env": "dev",
+  "feature": "qa",
+  "session_id": "demo-02",
+  "correlation_id": "req-1471e349",
+  "user_id_hash": "d2bfc8025ea4",
+  "model": "claude-sonnet-4-5",
+  "level": "info",
+  "ts": "2026-09-30T03:01:32.346675Z"
+}
+
+Result:
+All sensitive PII (Email, Phone VN, CCCD, Credit Card) are safely redacted before persisting to disk.
+validate_logs.py detected 0 leaks. Score: 100/100.

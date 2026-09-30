@@ -1,0 +1,40 @@
+[
+  {
+    "service": "api",
+    "event": "request_received",
+    "correlation_id": "req-1a2b3c4d",
+    "user_id_hash": "2a97516c354b",
+    "session_id": "demo-01",
+    "feature": "qa",
+    "model": "claude-sonnet-4-5",
+    "env": "dev",
+    "level": "info",
+    "ts": "2026-09-30T03:01:16.841345Z",
+    "payload": {
+      "message_preview": "Explain traces"
+    }
+  },
+  {
+    "service": "api",
+    "event": "response_sent",
+    "correlation_id": "req-1a2b3c4d",
+    "user_id_hash": "2a97516c354b",
+    "session_id": "demo-01",
+    "feature": "qa",
+    "model": "claude-sonnet-4-5",
+    "env": "dev",
+    "latency_ms": 1389,
+    "ttft_ms": 50,
+    "tokens_in": 24,
+    "tokens_out": 116,
+    "cost_usd": 0.001812,
+    "quality_score": 0.8,
+    "tool_name": "retrieval",
+    "tool_success": true,
+    "level": "info",
+    "ts": "2026-09-30T03:01:18.750009Z",
+    "payload": {
+      "answer_preview": "Starter answer. You should improve this output logic and add better quality chec..."
+    }
+  }
+]

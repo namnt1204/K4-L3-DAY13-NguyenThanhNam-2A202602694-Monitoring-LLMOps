@@ -1,0 +1,19 @@
+=== Evidence 06: Langfuse Cloud Traces List ===
+Project: day13-k4-l3b-2A202602694
+Total agent runs: 26 (Requirement: >= 10 traces - PASSED)
+
+Sample trace entries (name: day13-agent-request):
+1. Trace ID: e1e0b41cbc96732223b84fde3a5a0bf2 | Session: sess-candidate-v2 | Prompt Version: 2 | Latency: 1.122s | UTC: 2026-09-30 03:12:52
+2. Trace ID: aee50821a82f3c07faac69f0bb4612d3 | Session: sess-prompt-v2    | Prompt Version: 2 | Latency: 1.089s | UTC: 2026-09-30 03:12:10
+3. Trace ID: 6f6f7db6edd79f9c07276a0599bc3d87 | Session: sess-prompt-v2    | Prompt Version: 2 | Latency: 1.188s | UTC: 2026-09-30 03:11:57
+4. Trace ID: 664047182d2b3002e53691118d87454c | Session: sess-prompt-v1    | Prompt Version: 1 | Latency: 1.069s | UTC: 2026-09-30 03:11:40
+5. Trace ID: 8f4df93b9930c50c81105affe44bb9f2 | Session: sess-1            | Prompt Version: 1 | Latency: 1.212s | UTC: 2026-09-30 03:10:50
+6. Trace ID: 213d56bd3e9233cbd0d9e588f45e87cc | Session: sess-001          | Prompt Version: 1 | Latency: 0.162s | UTC: 2026-09-30 03:09:58
+7. Trace ID: 0a22971915253e40de644b3ef3718aed | Session: sess-v1           | Prompt Version: 1 | Latency: 0.164s | UTC: 2026-09-30 03:06:43
+8. Trace ID: 5f49f741c9866241a5a64120523d2c97 | Session: sess-v1           | Prompt Version: 1 | Latency: 1.080s | UTC: 2026-09-30 03:06:36
+9. Trace ID: 9312c02d61b671be12c882258d61c239 | Session: s10               | Prompt Version: local-v1 | Latency: 0.395s | UTC: 2026-09-30 03:01:55
+10. Trace ID: 31be19f92347e7f2f4abfd18deadd1f2 | Session: s09              | Prompt Version: local-v1 | Latency: 0.394s | UTC: 2026-09-30 03:01:54
+11. Trace ID: 495b87b203cd67d890d847add176eda1 | Session: s08              | Prompt Version: local-v1 | Latency: 0.396s | UTC: 2026-09-30 03:01:54
+12. Trace ID: 38c57b41e1cf5af5ba714b160fe695e0 | Session: s07              | Prompt Version: local-v1 | Latency: 0.398s | UTC: 2026-09-30 03:01:53
+
+Note: All observations have capture_input=False and capture_output=False (no raw PII leak in traces).

@@ -1,0 +1,52 @@
+=== Evidence 11: Dashboard Runtime Overview (6/6 Panels Healthy) ===
+Dashboard URL: http://127.0.0.1:8000/dashboard
+API Source: http://127.0.0.1:8000/api/dashboard/metrics
+Contract: config/dashboard.yaml (Verified 6/6 by validate_dashboard.py)
+Window: Last 60 Minutes (UTC) | Auto-Refresh: 15 seconds
+
+--- Panel 1: Latency percentiles and TTFT ---
+- Unit: ms
+- P50: 391.0 ms
+- P95: 1,164.3 ms
+- P99: 1,344.1 ms
+- TTFT P95: 50.0 ms
+- Threshold: P95 <= 3,000 ms
+- Status: PASS (In Spec)
+
+--- Panel 2: Request traffic ---
+- Unit: requests_per_minute
+- Total Requests: 15
+- Rate per minute: 5.0 req/min
+- Threshold: rate_per_minute >= 1.0
+- Status: PASS (In Spec)
+
+--- Panel 3: Error rate and retrieval success ---
+- Unit: percent
+- Error Rate: 0.0 % (0 failed requests)
+- Retrieval Success Rate: 100.0 %
+- Error Breakdown: None
+- Threshold: error_rate_pct <= 2.0 %
+- Status: PASS (In Spec)
+
+--- Panel 4: Cost over time ---
+- Unit: usd
+- Total Cost (60m window): $0.029286
+- Threshold: total <= $2.50
+- Status: PASS (In Spec)
+
+--- Panel 5: Input and output tokens ---
+- Unit: tokens
+- Total Tokens: 2,336
+- Tokens In: 479
+- Tokens Out: 1,857
+- Threshold: sum_by_field <= 50,000
+- Status: PASS (In Spec)
+
+--- Panel 6: Quality proxy ---
+- Unit: score_0_to_1
+- Mean Quality Score: 0.87
+- Threshold: mean >= 0.75
+- Status: PASS (In Spec)
+
+Overall Dashboard Status: ALL CONTRACTS HEALTHY (6/6 PASS)
+Recent Activity Log: All events accurately correlated by correlation_id across API and Langfuse traces.

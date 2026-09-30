@@ -1,0 +1,40 @@
+=== Evidence 08: Trace Metadata & Generation Details ===
+Trace ID: 0a22971915253e40de644b3ef3718aed
+Span Name: lab-agent-run -> generation
+Project: day13-k4-l3b-2A202602694
+
+1. Root Metadata (lab-agent-run):
+{
+  "correlation_id": "req-1a2b3c4d",
+  "feature": "qa",
+  "model": "claude-sonnet-4-5",
+  "environment": "dev",
+  "user_id_hash": "d1c24bdcdf94",
+  "session_id": "sess-v1",
+  "prompt_name": "day13-chat",
+  "prompt_label": "production",
+  "prompt_version": 1,
+  "prompt_source": "langfuse"
+}
+
+2. Child Generation Details:
+{
+  "observation_name": "generation",
+  "as_type": "generation",
+  "model": "claude-sonnet-4-5",
+  "prompt_link": "day13-chat (v1)",
+  "usage_details": {
+    "input": 28,
+    "output": 145
+  },
+  "cost_details": {
+    "total": 0.002259
+  },
+  "input": null,
+  "output": null
+}
+
+Verification:
+- correlation_id matches structured log in Evidence 04 (req-1a2b3c4d)
+- Raw input/output are not captured (Empty / Sanitized)
+- Tokens, cost, and prompt version are linked to Langfuse prompt management

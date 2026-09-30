@@ -1,0 +1,46 @@
+=== Evidence 13: Incident Structured Log Line ===
+Challenge ID: day13-k4-l3b-monitoring-llmops-v1
+Correlation ID: req-2fe07040
+Timestamp (UTC): 2026-09-30T03:38:07.704756Z
+Abnormal Metric: latency_ms = 2653 ms (Baseline: 388 ms)
+
+Complete Log Event in data/logs.jsonl:
+{
+  "service": "api",
+  "payload": {
+    "message_preview": "Explain why metrics traces and logs work together."
+  },
+  "event": "request_received",
+  "model": "claude-sonnet-4-5",
+  "feature": "monitoring",
+  "env": "dev",
+  "correlation_id": "req-2fe07040",
+  "session_id": "k4-l3b-challenge-s01",
+  "user_id_hash": "4a1a454d70a9",
+  "level": "info",
+  "ts": "2026-09-30T03:38:05.048269Z"
+}
+{
+  "service": "api",
+  "latency_ms": 2653,
+  "ttft_ms": 50,
+  "tokens_in": 35,
+  "tokens_out": 151,
+  "cost_usd": 0.00237,
+  "quality_score": 0.8,
+  "tool_name": "retrieval",
+  "tool_success": true,
+  "payload": {
+    "answer_preview": "Starter answer. You should improve this output logic and add better quality chec..."
+  },
+  "event": "response_sent",
+  "model": "claude-sonnet-4-5",
+  "feature": "monitoring",
+  "env": "dev",
+  "correlation_id": "req-2fe07040",
+  "session_id": "k4-l3b-challenge-s01",
+  "user_id_hash": "4a1a454d70a9",
+  "level": "info",
+  "ts": "2026-09-30T03:38:07.704756Z"
+}
+

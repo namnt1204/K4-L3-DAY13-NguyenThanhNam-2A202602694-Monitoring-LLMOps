@@ -1,0 +1,12 @@
+=== Evidence 12: Incident Metric (Dashboard Latency Jump) ===
+Challenge ID: day13-k4-l3b-monitoring-llmops-v1 (Official Challenge)
+Incident: rag_slow
+Affected Feature: monitoring
+Baseline Latency P95: ~391 ms
+Incident Latency P95: ~2,654 ms (Spike to 8,710 ms max)
+Time Window (UTC): 2026-09-30 03:37:49Z - 03:38:18Z
+Latency Threshold: P95 <= 2,000 ms (Exceeded)
+
+Observation:
+Dashboard Latency percentiles spiked sharply from baseline sub-400ms to >2600ms during the official challenge run, crossing the challenge threshold (2000ms) and approaching the system SLO limit (3000ms).
+

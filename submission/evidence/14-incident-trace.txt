@@ -1,0 +1,18 @@
+=== Evidence 14: Incident Trace Drill-down in Langfuse ===
+Challenge ID: day13-k4-l3b-monitoring-llmops-v1
+Correlation ID: req-2fe07040 (Exact match with Evidence 13)
+Session ID: k4-l3b-challenge-s01
+Trace Name: day13-agent-request
+Project: day13-k4-l3b-2A202602694
+
+Waterfall Observation Hierarchy:
+day13-agent-request [Correlation: req-2fe07040]
+└── lab-agent-run [AGENT] (Duration: ~2.658s)
+    ├── retrieval [RETRIEVER] (Duration: ~2.506s) <-- BOTTLENECK IDENTIFIED
+    └── generation [GENERATION] (Duration: ~0.152s)
+
+Root Cause Conclusion:
+The 2,653ms latency spike is completely caused by the `retrieval` child span taking ~2.506s (accounting for 94.3% of the total request duration). The generation span remained fast at ~152ms. 
+Root cause: artificial delay injected in vector store / knowledge retrieval path (`rag_slow` on affected feature `monitoring`).
+Fix: Disable the slowdown scenario (`python scripts/inject_incident.py --disable`) / scale vector store cache.
+

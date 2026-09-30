@@ -1,0 +1,22 @@
+=== Evidence 09: Prompt Versions in Langfuse Cloud ===
+Project: day13-k4-l3b-2A202602694
+Prompt Name: day13-chat
+
+Version 1 (Baseline):
+- Labels: ["baseline", "production"]
+- Template:
+  Feature={{feature}}
+  Docs={{docs}}
+  Question={{message}}
+- Variables: feature, docs, message
+- Commit message: "Initial baseline prompt v1"
+
+Version 2 (Candidate):
+- Labels: ["candidate", "latest"]
+- Template:
+  Feature={{feature}}
+  Docs={{docs}}
+  Question={{message}}
+  Instructions: Trả lời ngắn gọn, trực tiếp và súc tích.
+- Variables: feature, docs, message
+- Commit message: "Candidate prompt v2 with conciseness instructions"
